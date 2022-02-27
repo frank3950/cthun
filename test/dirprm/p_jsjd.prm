@@ -1,0 +1,5 @@
+Extract  p_jsjd
+RmtHost 192.168.1.12, MgrPort 15001
+RmtTrail /u01/app/ogg/dirdat/jd
+Passthru
+table jc.TAB_BARSCAN_DUPLICATE;

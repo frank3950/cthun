@@ -1,0 +1,9 @@
+Port 5001
+DYNAMICPORTLIST 5002-5257
+AUTOSTART ER *
+AUTORESTART ER *, RETRIES 5, WAITMINUTES 1,resetminutes 60
+STARTUPVALIDATIONDELAY 5
+LagreportHours 1
+LaginfoMinutes 3
+LagcriticalMinutes 5
+PurgeOldExtracts /u01/app/ogg/dirdat/*, UseCheckpoints, minkeephours 24

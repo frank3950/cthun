@@ -159,7 +159,7 @@ func (i Inst) parseParamFile(e <-chan ext, p <-chan pump, r <-chan rep) (<-chan 
 			r1.maps = make(map[string]string)
 			var builder strings.Builder
 			builder.WriteString(i.Home + "/dirprm/")
-			builder.WriteString(strings.ToUpper(r1.name))
+			builder.WriteString(strings.ToLower(r1.name))
 			builder.WriteString(".prm")
 			fileName := builder.String()
 			f, err := os.Open(fileName)

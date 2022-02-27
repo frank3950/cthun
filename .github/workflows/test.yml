@@ -12,6 +12,7 @@ jobs:
       image: "centos:7"
     steps:
     - run: yum install -y gcc
+    - run: chmod +x test/ggsci
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0

@@ -9,7 +9,6 @@ jobs:
   Test:
     runs-on: ubuntu-latest
     steps:
-    - run: yum install -y gcc
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0

@@ -1,0 +1,5 @@
+Extract p_tsjb
+RmtHost 192.168.1.44, MgrPort 15001
+RmtTrail /u01/app/ogg/dirdat/jb
+Passthru
+table jc.TAB_BARSCAN_ARRIVAL;

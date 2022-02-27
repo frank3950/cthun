@@ -1,0 +1,710 @@
+
+Oracle GoldenGate Command Interpreter for Oracle
+Version 19.1.0.0.4 OGGCORE_19.1.0.0.0_PLATFORMS_191017.1054_FBO
+Linux, x64, 64bit (optimized), Oracle 11g on Oct 17 2019 23:13:12
+Operating system character set identified as UTF-8.
+
+Copyright (C) 1995, 2019, Oracle and/or its affiliates. All rights reserved.
+
+
+
+GGSCI (query70) 1> 
+EXTRACT    E_JSJA    Last Started 2021-08-05 09:21   Status RUNNING
+Checkpoint Lag       00:00:00 (updated 00:00:00 ago)
+Process ID           378571
+Log Read Checkpoint  Oracle Redo Logs
+                     2022-02-27 13:10:57  Seqno 67941, RBA 479709696
+                     SCN 69.2416438166 (298769181590)
+
+  Target Extract Trails:
+
+  Trail Name                                       Seqno        RBA     Max MB Trail Type
+
+  /u01/app/ogg/dirdat/ja                           21618  874124357       1024 EXTTRAIL  
+
+  Extract Source                          Begin             End             
+
+  /u01/app/oracle/oradata/orcl/redo19.log  2021-08-05 09:13  2022-02-27 13:10
+  Not Available                           * Initialized *   2021-08-05 09:13
+  Not Available                           * Initialized *   2021-08-05 09:13
+  Not Available                           * Initialized *   2021-08-05 09:13
+
+
+Current directory    /u01/app/ogg
+
+Report file          /u01/app/ogg/dirrpt/E_JSJA.rpt
+Parameter file       /u01/app/ogg/dirprm/e_jsja.prm
+Checkpoint file      /u01/app/ogg/dirchk/E_JSJA.cpe
+Process file         
+Error log            /u01/app/ogg/ggserr.log
+
+EXTRACT    E_JSJB    Last Started 2021-08-05 09:37   Status RUNNING
+Checkpoint Lag       00:00:01 (updated 00:00:04 ago)
+Process ID           380740
+Log Read Checkpoint  Oracle Redo Logs
+                     2022-02-27 13:10:53  Seqno 67941, RBA 430788632
+                     SCN 69.2416437378 (298769180802)
+
+  Target Extract Trails:
+
+  Trail Name                                       Seqno        RBA     Max MB Trail Type
+
+  /u01/app/ogg/dirdat/jb                           20719  793297606       1024 EXTTRAIL  
+
+  Extract Source                          Begin             End             
+
+  /u01/app/oracle/oradata/orcl/redo19.log  2021-08-05 09:37  2022-02-27 13:10
+  Not Available                           * Initialized *   2021-08-05 09:37
+  Not Available                           * Initialized *   2021-08-05 09:37
+  Not Available                           * Initialized *   2021-08-05 09:37
+
+
+Current directory    /u01/app/ogg
+
+Report file          /u01/app/ogg/dirrpt/E_JSJB.rpt
+Parameter file       /u01/app/ogg/dirprm/e_jsjb.prm
+Checkpoint file      /u01/app/ogg/dirchk/E_JSJB.cpe
+Process file         
+Error log            /u01/app/ogg/ggserr.log
+
+EXTRACT    E_JSJC    Last Started 2021-08-05 09:43   Status RUNNING
+Checkpoint Lag       00:00:00 (updated 00:00:05 ago)
+Process ID           381705
+Log Read Checkpoint  Oracle Redo Logs
+                     2022-02-27 13:10:51  Seqno 67941, RBA 417564672
+                     SCN 69.2416437222 (298769180646)
+
+  Target Extract Trails:
+
+  Trail Name                                       Seqno        RBA     Max MB Trail Type
+
+  /u01/app/ogg/dirdat/jc                           10364  986648380       1024 EXTTRAIL  
+
+  Extract Source                          Begin             End             
+
+  /u01/app/oracle/oradata/orcl/redo19.log  2021-08-05 09:43  2022-02-27 13:10
+  Not Available                           * Initialized *   2021-08-05 09:43
+  Not Available                           * Initialized *   2021-08-05 09:43
+  Not Available                           * Initialized *   2021-08-05 09:43
+
+
+Current directory    /u01/app/ogg
+
+Report file          /u01/app/ogg/dirrpt/E_JSJC.rpt
+Parameter file       /u01/app/ogg/dirprm/e_jsjc.prm
+Checkpoint file      /u01/app/ogg/dirchk/E_JSJC.cpe
+Process file         
+Error log            /u01/app/ogg/ggserr.log
+
+EXTRACT    E_JSJD    Last Started 2021-08-06 11:02   Status RUNNING
+Checkpoint Lag       00:00:00 (updated 00:00:10 ago)
+Process ID           136481
+Log Read Checkpoint  Oracle Redo Logs
+                     2022-02-27 13:10:46  Seqno 67941, RBA 370500608
+                     SCN 69.2416436370 (298769179794)
+
+  Target Extract Trails:
+
+  Trail Name                                       Seqno        RBA     Max MB Trail Type
+
+  /u01/app/ogg/dirdat/jd                            2582  612392579       1024 EXTTRAIL  
+
+  Extract Source                          Begin             End             
+
+  /u01/app/oracle/oradata/orcl/redo19.log  2021-08-06 11:02  2022-02-27 13:10
+  Not Available                           * Initialized *   2021-08-06 11:02
+  Not Available                           * Initialized *   2021-08-06 11:02
+  Not Available                           * Initialized *   2021-08-06 11:02
+
+
+Current directory    /u01/app/ogg
+
+Report file          /u01/app/ogg/dirrpt/E_JSJD.rpt
+Parameter file       /u01/app/ogg/dirprm/e_jsjd.prm
+Checkpoint file      /u01/app/ogg/dirchk/E_JSJD.cpe
+Process file         
+Error log            /u01/app/ogg/ggserr.log
+
+EXTRACT    P_JSJA    Last Started 2021-12-31 16:54   Status RUNNING
+Checkpoint Lag       00:00:00 (updated 00:00:04 ago)
+Process ID           27375
+Log Read Checkpoint  File /u01/app/ogg/dirdat/ja000021618
+                     2022-02-27 13:10:48.000000  RBA 871831924
+
+  Target Extract Trails:
+
+  Trail Name                                       Seqno        RBA     Max MB Trail Type
+
+  /u01/app/ogg/dirdat/ja                           21614  513383050       1024 RMTTRAIL  
+
+  Extract Source                          Begin             End             
+
+  /u01/app/ogg/dirdat/ja000021618         2021-12-31 15:46  2022-02-27 13:10
+  /u01/app/ogg/dirdat/ja000015956         2021-12-31 15:46  2021-12-31 15:46
+  /u01/app/ogg/dirdat/ja000015956         2021-12-31 15:46  2021-12-31 15:46
+  /u01/app/ogg/dirdat/ja000015956         2021-12-31 15:46  2021-12-31 15:46
+  /u01/app/ogg/dirdat/ja000015956         2021-12-31 15:46  2021-12-31 15:46
+  /u01/app/ogg/dirdat/ja000015956         2021-12-31 15:46  2021-12-31 15:46
+  /u01/app/ogg/dirdat/ja000015956         2021-12-31 15:44  2021-12-31 15:46
+  /u01/app/ogg/dirdat/ja000015956         2021-08-05 11:15  2021-12-31 15:44
+  /u01/app/ogg/dirdat/ja000000005         2021-08-05 11:11  2021-08-05 11:15
+  /u01/app/ogg/dirdat/ja000000000         * Initialized *   2021-08-05 11:11
+  /u01/app/ogg/dirdat/ja000000000         * Initialized *   First Record    
+
+
+Current directory    /u01/app/ogg
+
+Report file          /u01/app/ogg/dirrpt/P_JSJA.rpt
+Parameter file       /u01/app/ogg/dirprm/p_jsja.prm
+Checkpoint file      /u01/app/ogg/dirchk/P_JSJA.cpe
+Process file         
+Error log            /u01/app/ogg/ggserr.log
+
+EXTRACT    P_JSJB    Last Started 2021-12-31 16:54   Status RUNNING
+Checkpoint Lag       00:00:03 (updated 00:00:02 ago)
+Process ID           27381
+Log Read Checkpoint  File /u01/app/ogg/dirdat/jb000020719
+                     2022-02-27 13:10:53.000000  RBA 797331448
+
+  Target Extract Trails:
+
+  Trail Name                                       Seqno        RBA     Max MB Trail Type
+
+  /u01/app/ogg/dirdat/jb                           20704  523508903       1024 RMTTRAIL  
+
+  Extract Source                          Begin             End             
+
+  /u01/app/ogg/dirdat/jb000020719         2021-12-31 15:43  2022-02-27 13:10
+  /u01/app/ogg/dirdat/jb000015050         2021-12-31 15:43  2021-12-31 15:43
+  /u01/app/ogg/dirdat/jb000015050         2021-12-31 15:43  2021-12-31 15:43
+  /u01/app/ogg/dirdat/jb000015050         2021-12-31 15:43  2021-12-31 15:43
+  /u01/app/ogg/dirdat/jb000015050         2021-12-31 15:43  2021-12-31 15:43
+  /u01/app/ogg/dirdat/jb000015050         2021-12-31 15:43  2021-12-31 15:43
+  /u01/app/ogg/dirdat/jb000015050         2021-12-31 15:43  2021-12-31 15:43
+  /u01/app/ogg/dirdat/jb000015050         2021-08-05 14:09  2021-12-31 15:43
+  /u01/app/ogg/dirdat/jb000000000         * Initialized *   2021-08-05 14:09
+  /u01/app/ogg/dirdat/jb000000000         * Initialized *   First Record    
+
+
+Current directory    /u01/app/ogg
+
+Report file          /u01/app/ogg/dirrpt/P_JSJB.rpt
+Parameter file       /u01/app/ogg/dirprm/p_jsjb.prm
+Checkpoint file      /u01/app/ogg/dirchk/P_JSJB.cpe
+Process file         
+Error log            /u01/app/ogg/ggserr.log
+
+EXTRACT    P_JSJC    Last Started 2021-12-31 16:55   Status RUNNING
+Checkpoint Lag       00:00:00 (updated 00:00:09 ago)
+Process ID           27495
+Log Read Checkpoint  File /u01/app/ogg/dirdat/jc000010364
+                     2022-02-27 13:10:43.000000  RBA 983175200
+
+  Target Extract Trails:
+
+  Trail Name                                       Seqno        RBA     Max MB Trail Type
+
+  /u01/app/ogg/dirdat/jc                           10344  773593668       1024 RMTTRAIL  
+
+  Extract Source                          Begin             End             
+
+  /u01/app/ogg/dirdat/jc000010364         2021-12-31 15:43  2022-02-27 13:10
+  /u01/app/ogg/dirdat/jc000007510         2021-12-31 15:43  2021-12-31 15:43
+  /u01/app/ogg/dirdat/jc000007510         2021-12-31 15:43  2021-12-31 15:43
+  /u01/app/ogg/dirdat/jc000007510         2021-12-31 15:43  2021-12-31 15:43
+  /u01/app/ogg/dirdat/jc000007510         2021-12-31 15:43  2021-12-31 15:43
+  /u01/app/ogg/dirdat/jc000007510         2021-12-31 15:43  2021-12-31 15:43
+  /u01/app/ogg/dirdat/jc000007510         2021-12-31 15:43  2021-12-31 15:43
+  /u01/app/ogg/dirdat/jc000007510         2021-08-05 16:16  2021-12-31 15:43
+  /u01/app/ogg/dirdat/jc000000000         * Initialized *   2021-08-05 16:16
+  /u01/app/ogg/dirdat/jc000000000         * Initialized *   First Record    
+
+
+Current directory    /u01/app/ogg
+
+Report file          /u01/app/ogg/dirrpt/P_JSJC.rpt
+Parameter file       /u01/app/ogg/dirprm/p_jsjc.prm
+Checkpoint file      /u01/app/ogg/dirchk/P_JSJC.cpe
+Process file         
+Error log            /u01/app/ogg/ggserr.log
+
+EXTRACT    P_JSJD    Last Started 2021-12-31 16:55   Status RUNNING
+Checkpoint Lag       00:00:00 (updated 00:00:01 ago)
+Process ID           27523
+Log Read Checkpoint  File /u01/app/ogg/dirdat/jd000002582
+                     2022-02-27 13:10:53.000000  RBA 614163352
+
+  Target Extract Trails:
+
+  Trail Name                                       Seqno        RBA     Max MB Trail Type
+
+  /u01/app/ogg/dirdat/jd                            2582  815409137       1024 RMTTRAIL  
+
+  Extract Source                          Begin             End             
+
+  /u01/app/ogg/dirdat/jd000002582         2021-12-31 15:44  2022-02-27 13:10
+  /u01/app/ogg/dirdat/jd000001665         2021-12-31 15:44  2021-12-31 15:44
+  /u01/app/ogg/dirdat/jd000001665         2021-12-31 15:44  2021-12-31 15:44
+  /u01/app/ogg/dirdat/jd000001665         2021-12-31 15:44  2021-12-31 15:44
+  /u01/app/ogg/dirdat/jd000001665         2021-12-31 15:44  2021-12-31 15:44
+  /u01/app/ogg/dirdat/jd000001665         2021-12-31 15:44  2021-12-31 15:44
+  /u01/app/ogg/dirdat/jd000001665         2021-12-31 15:44  2021-12-31 15:44
+  /u01/app/ogg/dirdat/jd000001665         2021-08-06 11:10  2021-12-31 15:44
+  /u01/app/ogg/dirdat/jd000000000         * Initialized *   2021-08-06 11:10
+  /u01/app/ogg/dirdat/jd000000000         * Initialized *   First Record    
+
+
+Current directory    /u01/app/ogg
+
+Report file          /u01/app/ogg/dirrpt/P_JSJD.rpt
+Parameter file       /u01/app/ogg/dirprm/p_jsjd.prm
+Checkpoint file      /u01/app/ogg/dirchk/P_JSJD.cpe
+Process file         
+Error log            /u01/app/ogg/ggserr.log
+
+EXTRACT    P_TS1JA   Last Started 2021-12-31 16:55   Status RUNNING
+Checkpoint Lag       00:00:00 (updated 00:00:00 ago)
+Process ID           27539
+Log Read Checkpoint  File /u01/app/ogg/dirdat/ja000021618
+                     2022-02-27 13:10:53.000000  RBA 874124357
+
+  Target Extract Trails:
+
+  Trail Name                                       Seqno        RBA     Max MB Trail Type
+
+  /u01/app/ogg/dirdat/ja                           20260  688927183       1024 RMTTRAIL  
+
+  Extract Source                          Begin             End             
+
+  /u01/app/ogg/dirdat/ja000021618         2021-12-31 15:44  2022-02-27 13:10
+  /u01/app/ogg/dirdat/ja000015956         2021-12-31 15:44  2021-12-31 15:44
+  /u01/app/ogg/dirdat/ja000015956         2021-12-31 15:44  2021-12-31 15:44
+  /u01/app/ogg/dirdat/ja000015956         2021-12-31 15:44  2021-12-31 15:44
+  /u01/app/ogg/dirdat/ja000015956         2021-12-31 15:44  2021-12-31 15:44
+  /u01/app/ogg/dirdat/ja000015956         2021-12-31 15:44  2021-12-31 15:44
+  /u01/app/ogg/dirdat/ja000015956         2021-12-31 15:44  2021-12-31 15:44
+  /u01/app/ogg/dirdat/ja000015956         2021-08-19 19:03  2021-12-31 15:44
+  /u01/app/ogg/dirdat/ja000000000         * Initialized *   2021-08-19 19:03
+  /u01/app/ogg/dirdat/ja000000000         * Initialized *   First Record    
+
+
+Current directory    /u01/app/ogg
+
+Report file          /u01/app/ogg/dirrpt/P_TS1JA.rpt
+Parameter file       /u01/app/ogg/dirprm/p_ts1ja.prm
+Checkpoint file      /u01/app/ogg/dirchk/P_TS1JA.cpe
+Process file         
+Error log            /u01/app/ogg/ggserr.log
+
+EXTRACT    P_TS1JB   Last Started 2021-12-31 16:55   Status RUNNING
+Checkpoint Lag       00:00:00 (updated 00:00:05 ago)
+Process ID           27545
+Log Read Checkpoint  File /u01/app/ogg/dirdat/jb000020719
+                     2022-02-27 13:10:48.000000  RBA 793297606
+
+  Target Extract Trails:
+
+  Trail Name                                       Seqno        RBA     Max MB Trail Type
+
+  /u01/app/ogg/dirdat/jb                           19451  517362169       1024 RMTTRAIL  
+
+  Extract Source                          Begin             End             
+
+  /u01/app/ogg/dirdat/jb000020719         2021-12-31 16:10  2022-02-27 13:10
+  /u01/app/ogg/dirdat/jb000015050         2021-12-31 16:10  2021-12-31 16:10
+  /u01/app/ogg/dirdat/jb000015050         2021-12-31 16:10  2021-12-31 16:10
+  /u01/app/ogg/dirdat/jb000015050         2021-12-31 16:10  2021-12-31 16:10
+  /u01/app/ogg/dirdat/jb000015050         2021-12-31 16:10  2021-12-31 16:10
+  /u01/app/ogg/dirdat/jb000015050         2021-12-31 16:01  2021-12-31 16:10
+  /u01/app/ogg/dirdat/jb000015050         2021-12-31 15:45  2021-12-31 16:01
+  /u01/app/ogg/dirdat/jb000015050         2021-08-19 19:10  2021-12-31 15:45
+  /u01/app/ogg/dirdat/jb000000000         * Initialized *   2021-08-19 19:10
+  /u01/app/ogg/dirdat/jb000000000         * Initialized *   First Record    
+
+
+Current directory    /u01/app/ogg
+
+Report file          /u01/app/ogg/dirrpt/P_TS1JB.rpt
+Parameter file       /u01/app/ogg/dirprm/p_ts1jb.prm
+Checkpoint file      /u01/app/ogg/dirchk/P_TS1JB.cpe
+Process file         
+Error log            /u01/app/ogg/ggserr.log
+
+EXTRACT    P_TS1JC   Last Started 2021-12-31 16:55   Status RUNNING
+Checkpoint Lag       00:00:00 (updated 00:00:09 ago)
+Process ID           27551
+Log Read Checkpoint  File /u01/app/ogg/dirdat/jc000010364
+                     2022-02-27 13:10:43.000000  RBA 983175200
+
+  Target Extract Trails:
+
+  Trail Name                                       Seqno        RBA     Max MB Trail Type
+
+  /u01/app/ogg/dirdat/jc                            9736  772738338       1024 RMTTRAIL  
+
+  Extract Source                          Begin             End             
+
+  /u01/app/ogg/dirdat/jc000010364         2021-12-31 16:12  2022-02-27 13:10
+  /u01/app/ogg/dirdat/jc000007510         2021-12-31 16:12  2021-12-31 16:12
+  /u01/app/ogg/dirdat/jc000007510         2021-12-31 16:12  2021-12-31 16:12
+  /u01/app/ogg/dirdat/jc000007510         2021-12-31 16:12  2021-12-31 16:12
+  /u01/app/ogg/dirdat/jc000007510         2021-12-31 16:12  2021-12-31 16:12
+  /u01/app/ogg/dirdat/jc000007510         2021-12-31 16:12  2021-12-31 16:12
+  /u01/app/ogg/dirdat/jc000007510         2021-12-31 16:01  2021-12-31 16:12
+  /u01/app/ogg/dirdat/jc000007510         2021-08-19 19:29  2021-12-31 16:01
+  /u01/app/ogg/dirdat/jc000000000         * Initialized *   2021-08-19 19:29
+  /u01/app/ogg/dirdat/jc000000000         * Initialized *   First Record    
+
+
+Current directory    /u01/app/ogg
+
+Report file          /u01/app/ogg/dirrpt/P_TS1JC.rpt
+Parameter file       /u01/app/ogg/dirprm/p_ts1jc.prm
+Checkpoint file      /u01/app/ogg/dirchk/P_TS1JC.cpe
+Process file         
+Error log            /u01/app/ogg/ggserr.log
+
+EXTRACT    P_TSJA    Last Started 2021-12-31 16:55   Status RUNNING
+Checkpoint Lag       00:00:00 (updated 00:00:00 ago)
+Process ID           27560
+Log Read Checkpoint  File /u01/app/ogg/dirdat/ja000021618
+                     2022-02-27 13:10:53.000000  RBA 874124357
+
+  Target Extract Trails:
+
+  Trail Name                                       Seqno        RBA     Max MB Trail Type
+
+  /u01/app/ogg/dirdat/ja                           20273  515674207       1024 RMTTRAIL  
+
+  Extract Source                          Begin             End             
+
+  /u01/app/ogg/dirdat/ja000021618         2021-12-31 15:46  2022-02-27 13:10
+  /u01/app/ogg/dirdat/ja000015956         2021-12-31 15:46  2021-12-31 15:46
+  /u01/app/ogg/dirdat/ja000015956         2021-12-31 15:46  2021-12-31 15:46
+  /u01/app/ogg/dirdat/ja000015956         2021-12-31 15:46  2021-12-31 15:46
+  /u01/app/ogg/dirdat/ja000015956         2021-12-31 15:46  2021-12-31 15:46
+  /u01/app/ogg/dirdat/ja000015956         2021-12-31 15:46  2021-12-31 15:46
+  /u01/app/ogg/dirdat/ja000015956         2021-12-31 15:46  2021-12-31 15:46
+  /u01/app/ogg/dirdat/ja000015956         2021-08-19 16:23  2021-12-31 15:46
+  /u01/app/ogg/dirdat/ja000000000         * Initialized *   2021-08-19 16:23
+  /u01/app/ogg/dirdat/ja000000000         * Initialized *   First Record    
+
+
+Current directory    /u01/app/ogg
+
+Report file          /u01/app/ogg/dirrpt/P_TSJA.rpt
+Parameter file       /u01/app/ogg/dirprm/p_tsja.prm
+Checkpoint file      /u01/app/ogg/dirchk/P_TSJA.cpe
+Process file         
+Error log            /u01/app/ogg/ggserr.log
+
+EXTRACT    P_TSJB    Last Started 2021-12-31 16:55   Status RUNNING
+Checkpoint Lag       00:00:00 (updated 00:00:06 ago)
+Process ID           27567
+Log Read Checkpoint  File /u01/app/ogg/dirdat/jb000020719
+                     2022-02-27 13:10:48.000000  RBA 793297606
+
+  Target Extract Trails:
+
+  Trail Name                                       Seqno        RBA     Max MB Trail Type
+
+  /u01/app/ogg/dirdat/jb                           19450  517349251       1024 RMTTRAIL  
+
+  Extract Source                          Begin             End             
+
+  /u01/app/ogg/dirdat/jb000020719         2021-12-31 16:10  2022-02-27 13:10
+  /u01/app/ogg/dirdat/jb000015050         2021-12-31 16:10  2021-12-31 16:10
+  /u01/app/ogg/dirdat/jb000015050         2021-12-31 16:10  2021-12-31 16:10
+  /u01/app/ogg/dirdat/jb000015050         2021-12-31 16:10  2021-12-31 16:10
+  /u01/app/ogg/dirdat/jb000015050         2021-12-31 16:10  2021-12-31 16:10
+  /u01/app/ogg/dirdat/jb000015050         2021-12-31 16:10  2021-12-31 16:10
+  /u01/app/ogg/dirdat/jb000015050         2021-12-31 16:01  2021-12-31 16:10
+  /u01/app/ogg/dirdat/jb000015050         2021-08-19 19:08  2021-12-31 16:01
+  /u01/app/ogg/dirdat/jb000000000         * Initialized *   2021-08-19 19:08
+  /u01/app/ogg/dirdat/jb000000000         * Initialized *   First Record    
+
+
+Current directory    /u01/app/ogg
+
+Report file          /u01/app/ogg/dirrpt/P_TSJB.rpt
+Parameter file       /u01/app/ogg/dirprm/p_tsjb.prm
+Checkpoint file      /u01/app/ogg/dirchk/P_TSJB.cpe
+Process file         
+Error log            /u01/app/ogg/ggserr.log
+
+EXTRACT    P_TSJC    Last Started 2021-12-31 16:55   Status RUNNING
+Checkpoint Lag       00:00:00 (updated 00:00:04 ago)
+Process ID           27575
+Log Read Checkpoint  File /u01/app/ogg/dirdat/jc000010364
+                     2022-02-27 13:10:48.000000  RBA 986648380
+
+  Target Extract Trails:
+
+  Trail Name                                       Seqno        RBA     Max MB Trail Type
+
+  /u01/app/ogg/dirdat/jc                            9764  776208462       1024 RMTTRAIL  
+
+  Extract Source                          Begin             End             
+
+  /u01/app/ogg/dirdat/jc000010364         2021-12-31 16:12  2022-02-27 13:10
+  /u01/app/ogg/dirdat/jc000007510         2021-12-31 16:12  2021-12-31 16:12
+  /u01/app/ogg/dirdat/jc000007510         2021-12-31 16:12  2021-12-31 16:12
+  /u01/app/ogg/dirdat/jc000007510         2021-12-31 16:12  2021-12-31 16:12
+  /u01/app/ogg/dirdat/jc000007510         2021-12-31 16:12  2021-12-31 16:12
+  /u01/app/ogg/dirdat/jc000007510         2021-12-31 15:58  2021-12-31 16:12
+  /u01/app/ogg/dirdat/jc000007510         2021-12-31 15:43  2021-12-31 15:58
+  /u01/app/ogg/dirdat/jc000007510         2021-08-19 19:30  2021-12-31 15:43
+  /u01/app/ogg/dirdat/jc000000000         * Initialized *   2021-08-19 19:30
+  /u01/app/ogg/dirdat/jc000000026         * Initialized *   2021-08-05 18:32
+  /u01/app/ogg/dirdat/jc000000000         * Initialized *   First Record    
+
+
+Current directory    /u01/app/ogg
+
+Report file          /u01/app/ogg/dirrpt/P_TSJC.rpt
+Parameter file       /u01/app/ogg/dirprm/p_tsjc.prm
+Checkpoint file      /u01/app/ogg/dirchk/P_TSJC.cpe
+Process file         
+Error log            /u01/app/ogg/ggserr.log
+
+REPLICAT   R_BQDSCT  Last Started 2022-02-24 00:18   Status RUNNING
+Checkpoint Lag       00:00:03 (updated 00:00:01 ago)
+Process ID           274494
+Log Read Checkpoint  File /u01/app/ogg/dirdat/ct000014063
+                     2022-02-27 13:10:54.000459  RBA 845649737
+
+Current Log BSN value: (requires database login)
+
+Last Committed Transaction CSN value: (requires database login)
+
+  Extract Source                          Begin             End             
+
+  /u01/app/ogg/dirdat/ct000014063         2022-02-24 00:16  2022-02-27 13:10
+  /u01/app/ogg/dirdat/ct000013733         2022-02-19 00:15  2022-02-24 00:16
+  /u01/app/ogg/dirdat/ct000013198         2022-02-12 00:14  2022-02-19 00:15
+  /u01/app/ogg/dirdat/ct000012317         2022-02-09 00:15  2022-02-12 00:14
+  /u01/app/ogg/dirdat/ct000011993         2022-01-30 00:12  2022-02-09 00:15
+  /u01/app/ogg/dirdat/ct000011771         2021-11-21 00:16  2022-01-30 00:12
+  /u01/app/ogg/dirdat/ct000005197         2021-10-10 00:14  2021-11-21 00:16
+  /u01/app/ogg/dirdat/ct000001243         2021-10-02 00:14  2021-10-10 00:14
+  /u01/app/ogg/dirdat/ct000000601         2021-09-26 01:24  2021-10-02 00:14
+  /u01/app/ogg/dirdat/ct000000119         2021-09-25 01:01  2021-09-26 01:24
+  /u01/app/ogg/dirdat/ct000000038         2021-09-24 17:20  2021-09-25 01:01
+  /u01/app/ogg/dirdat/ct000000015         * Initialized *   2021-09-24 17:20
+  dirdat/ct000000000                      * Initialized *   First Record    
+
+
+Current directory    /u01/app/ogg
+
+Report file          /u01/app/ogg/dirrpt/R_BQDSCT.rpt
+Parameter file       /u01/app/ogg/dirprm/r_bqdsct.prm
+Checkpoint file      /u01/app/ogg/dirchk/R_BQDSCT.cpr
+Checkpoint table     ogg.OGGCHKPT
+Process file         
+Error log            /u01/app/ogg/ggserr.log
+
+REPLICAT   R_BQQSCO  Last Started 2021-12-24 17:50   Status RUNNING
+Checkpoint Lag       00:00:05 (updated 00:00:03 ago)
+Process ID           68669
+Log Read Checkpoint  File /u01/app/ogg/dirdat/co000000585
+                     2022-02-27 13:10:50.002073  RBA 331921916
+
+Current Log BSN value: (requires database login)
+
+Last Committed Transaction CSN value: (requires database login)
+
+  Extract Source                          Begin             End             
+
+  /u01/app/ogg/dirdat/co000000585         2021-12-24 17:49  2022-02-27 13:10
+  /u01/app/ogg/dirdat/co000000020         * Initialized *   2021-12-24 17:49
+  /u01/app/ogg/dirdat/co000000000         * Initialized *   First Record    
+
+
+Current directory    /u01/app/ogg
+
+Report file          /u01/app/ogg/dirrpt/R_BQQSCO.rpt
+Parameter file       /u01/app/ogg/dirprm/r_bqqsco.prm
+Checkpoint file      /u01/app/ogg/dirchk/R_BQQSCO.cpr
+Checkpoint table     ogg.OGGCHKPT
+Process file         
+Error log            /u01/app/ogg/ggserr.log
+
+REPLICAT   R_BQQTCT  Last Started 2021-09-24 15:05   Status RUNNING
+Checkpoint Lag       00:00:02 (updated 00:00:00 ago)
+Process ID           455860
+Log Read Checkpoint  File /u01/app/ogg/dirdat/ct000014063
+                     2022-02-27 13:10:55.000810  RBA 846808127
+
+Current Log BSN value: (requires database login)
+
+Last Committed Transaction CSN value: (requires database login)
+
+  Extract Source                          Begin             End             
+
+  /u01/app/ogg/dirdat/ct000014063         * Initialized *   2022-02-27 13:10
+  dirdat/ct000000000                      * Initialized *   First Record    
+
+
+Current directory    /u01/app/ogg
+
+Report file          /u01/app/ogg/dirrpt/R_BQQTCT.rpt
+Parameter file       /u01/app/ogg/dirprm/r_bqqtct.prm
+Checkpoint file      /u01/app/ogg/dirchk/R_BQQTCT.cpr
+Checkpoint table     ogg.OGGCHKPT
+Process file         
+Error log            /u01/app/ogg/ggserr.log
+
+REPLICAT   R_DJCQA   Last Started 2021-09-24 14:53   Status RUNNING
+Checkpoint Lag       00:00:04 (updated 00:00:00 ago)
+Process ID           453966
+Log Read Checkpoint  File /u01/app/ogg/dirdat/cq000017572
+                     2022-02-27 13:10:54.002212  RBA 813415903
+
+Current Log BSN value: (requires database login)
+
+Last Committed Transaction CSN value: (requires database login)
+
+  Extract Source                          Begin             End             
+
+  /u01/app/ogg/dirdat/cq000017572         * Initialized *   2022-02-27 13:10
+  dirdat/cq000000000                      * Initialized *   First Record    
+
+
+Current directory    /u01/app/ogg
+
+Report file          /u01/app/ogg/dirrpt/R_DJCQA.rpt
+Parameter file       /u01/app/ogg/dirprm/r_djcqa.prm
+Checkpoint file      /u01/app/ogg/dirchk/R_DJCQA.cpr
+Checkpoint table     ogg.OGGCHKPT
+Process file         
+Error log            /u01/app/ogg/ggserr.log
+
+REPLICAT   R_DJCQB   Last Started 2021-09-24 14:53   Status RUNNING
+Checkpoint Lag       00:00:05 (updated 00:00:00 ago)
+Process ID           453979
+Log Read Checkpoint  File /u01/app/ogg/dirdat/cq000017572
+                     2022-02-27 13:10:53.001159  RBA 812468757
+
+Current Log BSN value: (requires database login)
+
+Last Committed Transaction CSN value: (requires database login)
+
+  Extract Source                          Begin             End             
+
+  /u01/app/ogg/dirdat/cq000017572         * Initialized *   2022-02-27 13:10
+  dirdat/cq000000000                      * Initialized *   First Record    
+
+
+Current directory    /u01/app/ogg
+
+Report file          /u01/app/ogg/dirrpt/R_DJCQB.rpt
+Parameter file       /u01/app/ogg/dirprm/r_djcqb.prm
+Checkpoint file      /u01/app/ogg/dirchk/R_DJCQB.cpr
+Checkpoint table     ogg.OGGCHKPT
+Process file         
+Error log            /u01/app/ogg/ggserr.log
+
+REPLICAT   R_FJCRA   Last Started 2021-09-24 14:57   Status RUNNING
+Checkpoint Lag       00:00:03 (updated 00:00:01 ago)
+Process ID           454655
+Log Read Checkpoint  File /u01/app/ogg/dirdat/cr000017038
+                     2022-02-27 13:10:53.001005  RBA 616071186
+
+Current Log BSN value: (requires database login)
+
+Last Committed Transaction CSN value: (requires database login)
+
+  Extract Source                          Begin             End             
+
+  /u01/app/ogg/dirdat/cr000017038         * Initialized *   2022-02-27 13:10
+  dirdat/cr000000000                      * Initialized *   First Record    
+
+
+Current directory    /u01/app/ogg
+
+Report file          /u01/app/ogg/dirrpt/R_FJCRA.rpt
+Parameter file       /u01/app/ogg/dirprm/r_fjcra.prm
+Checkpoint file      /u01/app/ogg/dirchk/R_FJCRA.cpr
+Checkpoint table     ogg.OGGCHKPT
+Process file         
+Error log            /u01/app/ogg/ggserr.log
+
+REPLICAT   R_FJCRB   Last Started 2021-09-24 14:57   Status RUNNING
+Checkpoint Lag       00:00:03 (updated 00:00:02 ago)
+Process ID           454660
+Log Read Checkpoint  File /u01/app/ogg/dirdat/cr000017038
+                     2022-02-27 13:10:53.001005  RBA 616203230
+
+Current Log BSN value: (requires database login)
+
+Last Committed Transaction CSN value: (requires database login)
+
+  Extract Source                          Begin             End             
+
+  /u01/app/ogg/dirdat/cr000017038         * Initialized *   2022-02-27 13:10
+  dirdat/cr000000000                      * Initialized *   First Record    
+
+
+Current directory    /u01/app/ogg
+
+Report file          /u01/app/ogg/dirrpt/R_FJCRB.rpt
+Parameter file       /u01/app/ogg/dirprm/r_fjcrb.prm
+Checkpoint file      /u01/app/ogg/dirchk/R_FJCRB.cpr
+Checkpoint table     ogg.OGGCHKPT
+Process file         
+Error log            /u01/app/ogg/ggserr.log
+
+REPLICAT   R_USUA    Last Started 2021-11-22 10:50   Status RUNNING
+Checkpoint Lag       00:00:05 (updated 00:00:07 ago)
+Process ID           392481
+Log Read Checkpoint  File /u01/app/ogg/dirdat/ua000000364
+                     2022-02-27 13:10:45.999949  RBA 825112298
+
+Current Log BSN value: (requires database login)
+
+Last Committed Transaction CSN value: (requires database login)
+
+  Extract Source                          Begin             End             
+
+  /u01/app/ogg/dirdat/ua000000364         2021-11-22 10:42  2022-02-27 13:10
+  /u01/app/ogg/dirdat/ua000000135         2021-11-22 10:08  2021-11-22 10:42
+  /u01/app/ogg/dirdat/ua000000134         * Initialized *   2021-11-22 10:08
+  dirdat/ua000000000                      * Initialized *   First Record    
+
+
+Current directory    /u01/app/ogg
+
+Report file          /u01/app/ogg/dirrpt/R_USUA.rpt
+Parameter file       /u01/app/ogg/dirprm/r_usua.prm
+Checkpoint file      /u01/app/ogg/dirchk/R_USUA.cpr
+Checkpoint table     ogg.OGGCHKPT
+Process file         
+Error log            /u01/app/ogg/ggserr.log
+
+REPLICAT   R_ZKGT    Last Started 2021-08-19 17:55   Status RUNNING
+Checkpoint Lag       00:00:00 (updated 00:00:00 ago)
+Process ID           39576
+Log Read Checkpoint  File /u01/app/ogg/dirdat/gt000000083
+                     2022-02-27 13:10:52.859369  RBA 331736417
+
+Current Log BSN value: (requires database login)
+
+Last Committed Transaction CSN value: (requires database login)
+
+  Extract Source                          Begin             End             
+
+  /u01/app/ogg/dirdat/gt000000083         * Initialized *   2022-02-27 13:10
+  /u01/app/ogg/dirdat/gt000000000         * Initialized *   First Record    
+
+
+Current directory    /u01/app/ogg
+
+Report file          /u01/app/ogg/dirrpt/R_ZKGT.rpt
+Parameter file       /u01/app/ogg/dirprm/r_zkgt.prm
+Checkpoint file      /u01/app/ogg/dirchk/R_ZKGT.cpr
+Checkpoint table     ogg.OGGCHKPT
+Process file         
+Error log            /u01/app/ogg/ggserr.log
+
+
+GGSCI (query70) 2> 

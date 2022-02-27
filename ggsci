@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# This is a FAKE ggsci shell for testing
+
+script_dir=$(cd $(dirname $0);pwd)
+
+read -p "wait info * detail command:" cmd
+if [ "$cmd" == "info * detail" ]
+then
+  cat $script_dir/dirprm/infodetail.log
+else
+  echo "ggsci error input: $cmd"
+fi

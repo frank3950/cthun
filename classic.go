@@ -150,6 +150,10 @@ func (i Inst) parseParamFile(e <-chan ext, p <-chan pump, r <-chan rep) (<-chan 
 					s := strings.Fields(strings.TrimSpace(formatLine))
 					p1.tables = append(p1.tables, s[1])
 				}
+				if strings.HasPrefix(formatLine, "RMTHOST") {
+					s := strings.Fields(strings.TrimSpace(formatLine))
+					p1.rhost = strings.ReplaceAll(s[1], ",", "")
+				}
 			}
 		}
 		close(pchan)
@@ -274,7 +278,7 @@ func (i Inst) GetAllTab() []string {
 	}
 	for _, p := range i.pumps {
 		for _, pt := range p.tables {
-			str := p.name + ": " + pt
+			str := p.name + ": RMTHOST=" + p.rhost + " " + pt
 			tList = append(tList, str)
 		}
 	}

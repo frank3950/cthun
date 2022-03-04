@@ -22,7 +22,7 @@ type ext struct {
 type pump struct {
 	name   string
 	state  string
-	rhost  string
+	rHost  string
 	tables []string
 }
 
@@ -148,6 +148,12 @@ func (i Inst) parseParamFile(e <-chan ext, p <-chan pump, r <-chan rep) (<-chan 
 			// replace comments
 			rComment := regexp.MustCompile(`--.*`)
 			param := rComment.ReplaceAllString(sParam, "")
+
+			rHost := regexp.MustCompile(`(?i)rmthost[^,]*,`)
+			host := rHost.FindString(param)
+			hStr := strings.ReplaceAll(host, ",", "")
+			p1.rHost = strings.Fields(hStr)[1]
+
 			rTable := regexp.MustCompile(`(?i)table[^;]*;`)
 			tList := rTable.FindAllString(param, -1)
 			for _, line := range tList {
@@ -290,7 +296,7 @@ func (i Inst) GetAllTab() []string {
 	}
 	for _, p := range i.pumps {
 		for _, pt := range p.tables {
-			str := p.name + ": RMTHOST=" + p.rhost + " " + pt
+			str := p.name + ": RMTHOST=" + p.rHost + " " + pt
 			tList = append(tList, str)
 		}
 	}

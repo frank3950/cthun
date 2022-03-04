@@ -60,9 +60,9 @@ func TestParseParamFile(t *testing.T) {
 	pchan := make(chan pump)
 	rchan := make(chan rep)
 	go func() {
-		echan <- ext{name: "E_JSJA"}
-		pchan <- pump{name: "P_TS1JB"}
-		rchan <- rep{name: "R_ZKGT"}
+		echan <- ext{name: "E_TEST"}
+		pchan <- pump{name: "P_TEST"}
+		rchan <- rep{name: "R_TEST"}
 		close(echan)
 		close(pchan)
 		close(rchan)
@@ -72,15 +72,15 @@ func TestParseParamFile(t *testing.T) {
 	re := <-e
 	rp := <-p
 	rr := <-r
-
-	if len(re.tables) != 1 {
-		t.Errorf("get %d extract table, excepted %d", len(re.state), 1)
+	LogInfo.Println(rr)
+	if len(re.tables) != 3 {
+		t.Errorf("get %d extract table, excepted %d", len(re.state), 3)
 	}
-	if len(rp.tables) != 1 {
-		t.Errorf("get %d pump table, excepted %d", len(re.state), 1)
+	if len(rp.tables) != 2 {
+		t.Errorf("get %d pump table, excepted %d", len(re.state), 2)
 	}
-	if len(rr.maps) != 1 {
-		t.Errorf("get %d replicat table, excepted %d", len(rr.maps), 1)
+	if len(rr.maps) != 3 {
+		t.Errorf("get %d replicat table, excepted %d", len(rr.maps), 3)
 	}
 }
 

@@ -1,0 +1,14 @@
+extract e_test
+dynamicresolution
+SETENV (NLS_LANG="AMERICAN_AMERICA.AL32UTF8")
+SETENV (ORACLE_HOME = "/u01/app/oracle/product/11.2.0/dbhome_1")
+SETENV (ORACLE_SID = "orcl")
+UserID ogg, Password abcde
+ExtTrail /u01/app/ogg/dirdat/ja
+TRANLOGOPTIONS DBLOGREADER
+Table jc.a;
+--table jc.a;
+-- table jc.a;
+ --table jc.aa;
+table  jc.b;--comment
+ table  jc.C;

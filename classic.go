@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"io"
 	"os"
+	"regexp"
 	"strings"
 	"sync"
 )
@@ -21,7 +22,7 @@ type ext struct {
 type pump struct {
 	name   string
 	state  string
-	rhost  string
+	rHost  string
 	tables []string
 }
 
@@ -97,6 +98,7 @@ func (i Inst) parseParamFile(e <-chan ext, p <-chan pump, r <-chan rep) (<-chan 
 	pchan := make(chan pump)
 	rchan := make(chan rep)
 	go func() {
+		// parse extrace
 		for e1 := range e {
 			var builder strings.Builder
 			builder.WriteString(i.Home + "/dirprm/")
@@ -106,22 +108,23 @@ func (i Inst) parseParamFile(e <-chan ext, p <-chan pump, r <-chan rep) (<-chan 
 			f, err := os.Open(fileName)
 			defer f.Close()
 			if err != nil {
+				LogError.Printf("open param file error: %s", err)
+			}
+			bParam, err := io.ReadAll(f)
+			sParam := string(bParam)
+			if err != nil {
 				LogError.Printf("read param file error: %s", err)
 			}
-			br := bufio.NewReader(f)
-			for {
-				bLine, _, c := br.ReadLine()
-				if c == io.EOF {
-					echan <- e1
-					break
-				}
-				sLine := string(bLine)
-				formatLine := strings.ToUpper(strings.ReplaceAll(strings.TrimLeft(sLine, " "), ";", ""))
-				if strings.HasPrefix(formatLine, "TABLE") {
-					s := strings.Fields(strings.TrimSpace(formatLine))
-					e1.tables = append(e1.tables, s[1])
-				}
+			// replace comments
+			rComment := regexp.MustCompile(`--.*`)
+			param := rComment.ReplaceAllString(sParam, "")
+			rTable := regexp.MustCompile(`(?i)table[^;]*;`)
+			tList := rTable.FindAllString(param, -1)
+			for _, line := range tList {
+				t := strings.TrimSpace(strings.Replace(strings.ToUpper(strings.ReplaceAll(line, ";", "")), "TABLE", "", 1))
+				e1.tables = append(e1.tables, t)
 			}
+			echan <- e1
 		}
 		close(echan)
 	}()
@@ -135,26 +138,29 @@ func (i Inst) parseParamFile(e <-chan ext, p <-chan pump, r <-chan rep) (<-chan 
 			f, err := os.Open(fileName)
 			defer f.Close()
 			if err != nil {
+				LogError.Printf("open param file error: %s", err)
+			}
+			bParam, err := io.ReadAll(f)
+			sParam := string(bParam)
+			if err != nil {
 				LogError.Printf("read param file error: %s", err)
 			}
-			br := bufio.NewReader(f)
-			for {
-				bLine, _, c := br.ReadLine()
-				if c == io.EOF {
-					pchan <- p1
-					break
-				}
-				sLine := string(bLine)
-				formatLine := strings.ToUpper(strings.ReplaceAll(strings.TrimLeft(sLine, " "), ";", ""))
-				if strings.HasPrefix(formatLine, "TABLE") {
-					s := strings.Fields(strings.TrimSpace(formatLine))
-					p1.tables = append(p1.tables, s[1])
-				}
-				if strings.HasPrefix(formatLine, "RMTHOST") {
-					s := strings.Fields(strings.TrimSpace(formatLine))
-					p1.rhost = strings.ReplaceAll(s[1], ",", "")
-				}
+			// replace comments
+			rComment := regexp.MustCompile(`--.*`)
+			param := rComment.ReplaceAllString(sParam, "")
+
+			rHost := regexp.MustCompile(`(?i)rmthost[^,]*,`)
+			host := rHost.FindString(param)
+			hStr := strings.ReplaceAll(host, ",", "")
+			p1.rHost = strings.Fields(hStr)[1]
+
+			rTable := regexp.MustCompile(`(?i)table[^;]*;`)
+			tList := rTable.FindAllString(param, -1)
+			for _, line := range tList {
+				t := strings.TrimSpace(strings.Replace(strings.ToUpper(strings.ReplaceAll(line, ";", "")), "TABLE", "", 1))
+				p1.tables = append(p1.tables, t)
 			}
+			pchan <- p1
 		}
 		close(pchan)
 	}()
@@ -169,22 +175,34 @@ func (i Inst) parseParamFile(e <-chan ext, p <-chan pump, r <-chan rep) (<-chan 
 			f, err := os.Open(fileName)
 			defer f.Close()
 			if err != nil {
+				LogError.Printf("open param file error: %s", err)
+			}
+			bParam, err := io.ReadAll(f)
+			sParam := string(bParam)
+			if err != nil {
 				LogError.Printf("read param file error: %s", err)
 			}
-			br := bufio.NewReader(f)
-			for {
-				bLine, _, c := br.ReadLine()
-				if c == io.EOF {
-					rchan <- r1
-					break
-				}
-				sLine := string(bLine)
-				formatLine := strings.ReplaceAll(strings.Replace(strings.ToUpper(strings.TrimLeft(sLine, " ")), ",", " ", -1), ";", "")
-				if strings.HasPrefix(formatLine, "MAP") {
-					s := strings.Fields(strings.TrimSpace(formatLine))
-					r1.maps[s[1]] = s[3]
-				}
+			// replace comments
+			rComment := regexp.MustCompile(`--.*`)
+			param := rComment.ReplaceAllString(sParam, "")
+			rTable := regexp.MustCompile(`(?i)map[^;]*;`)
+			tList := rTable.FindAllString(param, -1)
+			for _, line := range tList {
+				// upper string
+				upperStr := strings.ToUpper(line)
+				// cut ;
+				nStr := strings.ReplaceAll(upperStr, ";", "")
+				// cur map prefix
+				noMapStr := strings.ReplaceAll(nStr, "MAP", "")
+				// trim space
+				tStr := strings.TrimSpace(noMapStr)
+				// cut ,
+				cStr := strings.ReplaceAll(tStr, ",", " ")
+				// field
+				fStr := strings.Fields(cStr)
+				r1.maps[fStr[0]] = fStr[2]
 			}
+			rchan <- r1
 		}
 		close(rchan)
 	}()
@@ -278,7 +296,7 @@ func (i Inst) GetAllTab() []string {
 	}
 	for _, p := range i.pumps {
 		for _, pt := range p.tables {
-			str := p.name + ": RMTHOST=" + p.rhost + " " + pt
+			str := p.name + ": RMTHOST=" + p.rHost + " " + pt
 			tList = append(tList, str)
 		}
 	}

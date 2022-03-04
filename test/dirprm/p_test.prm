@@ -1,0 +1,9 @@
+Extract p_jsja
+RmtHost 192.168.1.72, MgrPort 15001
+RmtTrail /u01/app/ogg/dirdat/ja
+Passthru
+TABLE jc.a;--comment
+-- table jc.a
+ --table jc.b;
+--table  jc.c;
+Table  jc.e ;

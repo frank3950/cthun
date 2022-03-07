@@ -4,7 +4,6 @@ import (
 	"log"
 	"os"
 	"os/exec"
-	"strings"
 )
 
 var (
@@ -22,21 +21,28 @@ func ExecCMD(c string) (string, error) {
 	return string(out), err
 }
 
-type GGHandler interface {
+type SetupHandler interface {
 	Setup() error
-	GetAllTab() []string
 }
 
-func CheckTableInUse(gg GGHandler, tList []string) string {
-	gg.Setup()
-	var builder strings.Builder
-	allTab := gg.GetAllTab()
-	for _, t := range tList {
-		for _, str := range allTab {
-			if strings.Contains(str, strings.ToUpper(t)) {
-				builder.WriteString(str + "\n")
-			}
-		}
-	}
-	return builder.String()
+type Searcher interface {
+	Search(keyword string) []string
+}
+
+type LagHandler interface {
+	GetAllLag() map[string]int
+	GetAllCkpLag() map[string]int
+}
+
+type BaseInfoHandler interface {
+	GetBaseInfo() map[string]string
+}
+
+type SizeHandler interface {
+	GetSize() int
+}
+
+func SearchParam(s Searcher, k string) []string {
+	result := s.Search(k)
+	return result
 }

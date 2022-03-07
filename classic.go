@@ -5,6 +5,7 @@ import (
 	"io"
 	"os"
 	"regexp"
+	"strconv"
 	"strings"
 	"sync"
 )
@@ -17,6 +18,8 @@ type ext struct {
 	name   string
 	state  string
 	tables []string
+	lag    int
+	ckpLag int
 }
 
 type pump struct {
@@ -24,15 +27,19 @@ type pump struct {
 	state  string
 	rHost  string
 	tables []string
+	lag    int
+	ckpLag int
 }
 
 type rep struct {
-	name  string
-	state string
-	maps  map[string]string
+	name   string
+	state  string
+	maps   map[string]string
+	lag    int
+	ckpLag int
 }
 
-type Inst struct {
+type ClassicInst struct {
 	Home string
 	mgr
 	exts  []ext
@@ -40,25 +47,40 @@ type Inst struct {
 	reps  []rep
 }
 
-func (i *Inst) addExt(eChan <-chan ext) {
+func (i *ClassicInst) addExt(eChan <-chan ext) {
 	for e := range eChan {
 		i.exts = append(i.exts, e)
 	}
 }
 
-func (i *Inst) addPump(pChan <-chan pump) {
+func (i *ClassicInst) addPump(pChan <-chan pump) {
 	for p := range pChan {
 		i.pumps = append(i.pumps, p)
 	}
 }
 
-func (i *Inst) addRep(rChan <-chan rep) {
+func (i *ClassicInst) addRep(rChan <-chan rep) {
 	for r := range rChan {
 		i.reps = append(i.reps, r)
 	}
 }
 
-func (i Inst) TakeInfoDetailString() (string, error) {
+func (i ClassicInst) GetSize() (int, error) {
+	bSizeStr, err := ExecCMD("du " + i.Home + "/dirdat|awk '{print $1}'")
+	bSizeStrFormat := strings.ReplaceAll(bSizeStr, "\n", "")
+	if err != nil {
+		LogError.Printf("get dirdat size error:%s", err)
+		return 0, err
+	}
+	bSize, err := strconv.Atoi(bSizeStrFormat)
+	if err != nil {
+		LogError.Printf("convert dirdat size err:%s", err)
+		return 0, err
+	}
+	return bSize, nil
+}
+
+func (i ClassicInst) TakeInfoDetailString() (string, error) {
 	out, err := ExecCMD(i.Home + "/ggsci<<EOF\ninfo * detail\nEOF\n")
 	if err != nil {
 		LogError.Println(err)
@@ -93,12 +115,12 @@ func cutInfoDetailString(infoDetail string) <-chan string {
 	return c
 }
 
-func (i Inst) parseParamFile(e <-chan ext, p <-chan pump, r <-chan rep) (<-chan ext, <-chan pump, <-chan rep) {
+func (i ClassicInst) parseParamFile(e <-chan ext, p <-chan pump, r <-chan rep) (<-chan ext, <-chan pump, <-chan rep) {
 	echan := make(chan ext)
 	pchan := make(chan pump)
 	rchan := make(chan rep)
 	go func() {
-		// parse extrace
+		// parse extract
 		for e1 := range e {
 			var builder strings.Builder
 			builder.WriteString(i.Home + "/dirprm/")
@@ -260,7 +282,7 @@ func parseInfoDetailString(c <-chan string) (<-chan ext, <-chan pump, <-chan rep
 	return echan, pchan, rchan
 }
 
-func (i *Inst) Setup() error {
+func (i *ClassicInst) Setup() error {
 	s, err := i.TakeInfoDetailString()
 	if err != nil {
 		LogError.Println(err)
@@ -286,25 +308,32 @@ func (i *Inst) Setup() error {
 	return nil
 }
 
-func (i Inst) GetAllTab() []string {
-	var tList []string
+func (i ClassicInst) Search(keyword string) []string {
+	var aInfo []string
+	var sInfo []string
+	upperKeyword := strings.ToUpper(keyword)
 	for _, e := range i.exts {
 		for _, et := range e.tables {
 			str := e.name + ": " + et
-			tList = append(tList, str)
+			aInfo = append(aInfo, str)
 		}
 	}
 	for _, p := range i.pumps {
 		for _, pt := range p.tables {
 			str := p.name + ": RMTHOST=" + p.rHost + " " + pt
-			tList = append(tList, str)
+			aInfo = append(aInfo, str)
 		}
 	}
 	for _, r := range i.reps {
 		for rk, rv := range r.maps {
-			str := r.name + ": " + "MAP " + rk + ",TABLE " + rv
-			tList = append(tList, str)
+			str := r.name + ": " + "MAP " + rk + ", TABLE " + rv
+			aInfo = append(aInfo, str)
 		}
 	}
-	return tList
+	for _, info := range aInfo {
+		if strings.Contains(info, upperKeyword) {
+			sInfo = append(sInfo, info)
+		}
+	}
+	return sInfo
 }

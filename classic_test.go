@@ -6,8 +6,19 @@ import (
 	"testing"
 )
 
+func TestGetSize(t *testing.T) {
+	i := ClassicInst{Home: "test"}
+	bSize, err := i.GetSize()
+	if err != nil {
+		t.Errorf("TestGetDirSize err:%s", err)
+	}
+	if bSize != 8 {
+		t.Errorf("GetDirSize()=%v expected=%v", bSize, 8)
+	}
+}
+
 func TestAddExt(t *testing.T) {
-	i := Inst{}
+	i := ClassicInst{}
 	eChan := make(chan ext)
 	go func() {
 		eChan <- ext{name: "E_CXA"}
@@ -23,7 +34,7 @@ func TestAddExt(t *testing.T) {
 }
 
 func TestAddPump(t *testing.T) {
-	i := Inst{}
+	i := ClassicInst{}
 	pChan := make(chan pump)
 	go func() {
 		pChan <- pump{name: "P_CXA"}
@@ -38,7 +49,7 @@ func TestAddPump(t *testing.T) {
 }
 
 func TestAddRep(t *testing.T) {
-	i := Inst{}
+	i := ClassicInst{}
 	rChan := make(chan rep)
 	go func() {
 		rChan <- rep{name: "R_CXA"}
@@ -55,7 +66,7 @@ func TestAddRep(t *testing.T) {
 }
 
 func TestParseParamFile(t *testing.T) {
-	i := Inst{Home: "test/"}
+	i := ClassicInst{Home: "test/"}
 	echan := make(chan ext)
 	pchan := make(chan pump)
 	rchan := make(chan rep)
@@ -109,11 +120,11 @@ func TestParseInfoDetailString(t *testing.T) {
 
 func TestTakeInfoDetailString(t *testing.T) {
 	var rightTestCase = []struct {
-		in Inst
+		in ClassicInst
 	}{
-		{in: Inst{Home: "test//"}},
-		{in: Inst{Home: "test/"}},
-		{in: Inst{Home: "test"}},
+		{in: ClassicInst{Home: "test//"}},
+		{in: ClassicInst{Home: "test/"}},
+		{in: ClassicInst{Home: "test"}},
 	}
 	for _, tc := range rightTestCase {
 		_, err := tc.in.TakeInfoDetailString()
@@ -123,10 +134,10 @@ func TestTakeInfoDetailString(t *testing.T) {
 	}
 
 	var wrongTestCase = []struct {
-		in Inst
+		in ClassicInst
 	}{
-		{in: Inst{Home: "/tmp/"}},
-		{in: Inst{Home: "test/gg_home1/"}},
+		{in: ClassicInst{Home: "/tmp/"}},
+		{in: ClassicInst{Home: "test/gg_home1/"}},
 	}
 	for _, tc := range wrongTestCase {
 		_, err := tc.in.TakeInfoDetailString()
@@ -151,7 +162,7 @@ func TestCutInfoDetailString(t *testing.T) {
 func TestSetup(t *testing.T) {
 	var testCase = []string{"test/", "test//", "test"}
 	for _, tc := range testCase {
-		i := Inst{Home: tc}
+		i := ClassicInst{Home: tc}
 		err := i.Setup()
 		if err != nil {
 			t.Errorf("setup error: %s", err)

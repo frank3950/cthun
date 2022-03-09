@@ -39,7 +39,7 @@ type rep struct {
 	ckpLag int
 }
 
-type ClassicInst struct {
+type ClassicGG struct {
 	Home string
 	mgr
 	exts  []ext
@@ -47,25 +47,25 @@ type ClassicInst struct {
 	reps  []rep
 }
 
-func (i *ClassicInst) addExt(eChan <-chan ext) {
+func (i *ClassicGG) addExt(eChan <-chan ext) {
 	for e := range eChan {
 		i.exts = append(i.exts, e)
 	}
 }
 
-func (i *ClassicInst) addPump(pChan <-chan pump) {
+func (i *ClassicGG) addPump(pChan <-chan pump) {
 	for p := range pChan {
 		i.pumps = append(i.pumps, p)
 	}
 }
 
-func (i *ClassicInst) addRep(rChan <-chan rep) {
+func (i *ClassicGG) addRep(rChan <-chan rep) {
 	for r := range rChan {
 		i.reps = append(i.reps, r)
 	}
 }
 
-func (i ClassicInst) GetSize() (int, error) {
+func (i ClassicGG) GetDatSize() (int, error) {
 	bSizeStr, err := ExecCMD("du " + i.Home + "/dirdat|awk '{print $1}'")
 	bSizeStrFormat := strings.ReplaceAll(bSizeStr, "\n", "")
 	if err != nil {
@@ -80,7 +80,7 @@ func (i ClassicInst) GetSize() (int, error) {
 	return bSize, nil
 }
 
-func (i ClassicInst) TakeInfoDetailString() (string, error) {
+func (i ClassicGG) getInfoDetail() (string, error) {
 	out, err := ExecCMD(i.Home + "/ggsci<<EOF\ninfo * detail\nEOF\n")
 	if err != nil {
 		LogError.Println(err)
@@ -89,7 +89,7 @@ func (i ClassicInst) TakeInfoDetailString() (string, error) {
 	return out, nil
 }
 
-func cutInfoDetailString(infoDetail string) <-chan string {
+func cutInfoDetail(infoDetail string) <-chan string {
 	c := make(chan string)
 	go func() {
 		var builder strings.Builder
@@ -115,7 +115,7 @@ func cutInfoDetailString(infoDetail string) <-chan string {
 	return c
 }
 
-func (i ClassicInst) parseParamFile(e <-chan ext, p <-chan pump, r <-chan rep) (<-chan ext, <-chan pump, <-chan rep) {
+func (i ClassicGG) parseParamFile(e <-chan ext, p <-chan pump, r <-chan rep) (<-chan ext, <-chan pump, <-chan rep) {
 	echan := make(chan ext)
 	pchan := make(chan pump)
 	rchan := make(chan rep)
@@ -282,13 +282,13 @@ func parseInfoDetailString(c <-chan string) (<-chan ext, <-chan pump, <-chan rep
 	return echan, pchan, rchan
 }
 
-func (i *ClassicInst) Setup() error {
-	s, err := i.TakeInfoDetailString()
+func (i *ClassicGG) Setup() error {
+	s, err := i.getInfoDetail()
 	if err != nil {
 		LogError.Println(err)
 		return err
 	}
-	c := cutInfoDetailString(s)
+	c := cutInfoDetail(s)
 	eChan, pChan, rChan := i.parseParamFile(parseInfoDetailString(c))
 	var wg = sync.WaitGroup{}
 	wg.Add(3)
@@ -308,9 +308,10 @@ func (i *ClassicInst) Setup() error {
 	return nil
 }
 
-func (i ClassicInst) Search(keyword string) []string {
+func (i ClassicGG) Search(keyword string) []string {
 	var aInfo []string
 	var sInfo []string
+
 	upperKeyword := strings.ToUpper(keyword)
 	for _, e := range i.exts {
 		for _, et := range e.tables {

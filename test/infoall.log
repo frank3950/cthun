@@ -1,0 +1,31 @@
+
+Program     Status      Group       Lag at Chkpt  Time Since Chkpt
+
+MANAGER     RUNNING                                           
+EXTRACT     RUNNING     E_JSJA      00:00:01      00:00:06    
+EXTRACT     RUNNING     E_JSJB      00:00:01      00:00:06    
+EXTRACT     RUNNING     E_JSJC      00:00:00      00:00:00    
+EXTRACT     RUNNING     E_JSJD      00:00:01      00:00:00    
+EXTRACT     RUNNING     E_JSJE      00:00:01      00:00:09    
+EXTRACT     RUNNING     P_JSJA      00:00:00      00:00:00    
+EXTRACT     RUNNING     P_JSJB      00:00:00      00:00:04    
+EXTRACT     RUNNING     P_JSJC      00:00:00      00:00:05    
+EXTRACT     RUNNING     P_JSJD      00:00:00      00:00:04    
+EXTRACT     RUNNING     P_JSJE      00:00:00      00:00:00    
+EXTRACT     RUNNING     P_TS1JA     00:00:00      00:00:00    
+EXTRACT     RUNNING     P_TS1JB     00:00:00      00:00:05    
+EXTRACT     RUNNING     P_TS1JC     00:00:00      00:00:07    
+EXTRACT     RUNNING     P_TS1JE     00:00:00      00:00:05    
+EXTRACT     RUNNING     P_TSJA      00:00:00      00:00:00    
+EXTRACT     RUNNING     P_TSJB      00:00:00      00:00:09    
+EXTRACT     RUNNING     P_TSJC      00:00:00      00:00:06    
+EXTRACT     RUNNING     P_TSJE      00:00:00      00:00:06    
+REPLICAT    RUNNING     R_BQDSCT    00:00:02      00:00:01    
+REPLICAT    RUNNING     R_BQQSCO    00:00:04      00:00:00    
+REPLICAT    RUNNING     R_BQQTCT    00:00:02      00:00:00    
+REPLICAT    RUNNING     R_DJCQA     00:00:03      00:00:00    
+REPLICAT    RUNNING     R_DJCQB     00:00:04      00:00:00    
+REPLICAT    RUNNING     R_FJCRA     00:00:02      00:00:00    
+REPLICAT    RUNNING     R_FJCRB     00:00:03      00:00:00    
+REPLICAT    RUNNING     R_USUA      00:00:05      00:00:06    
+REPLICAT    RUNNING     R_ZKGT      00:00:00      00:00:02    

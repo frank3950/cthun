@@ -21,7 +21,7 @@ func ExecCMD(c string) (string, error) {
 	return string(out), err
 }
 
-type SetupHandler interface {
+type Setuper interface {
 	Setup() error
 }
 
@@ -29,20 +29,24 @@ type Searcher interface {
 	Search(keyword string) []string
 }
 
-type LagHandler interface {
+type Lager interface {
 	GetAllLag() map[string]int
 	GetAllCkpLag() map[string]int
 }
 
-type BaseInfoHandler interface {
-	GetBaseInfo() map[string]string
+type Sizer interface {
+	GetDatSize() (int, error)
 }
 
-type SizeHandler interface {
-	GetSize() int
+func GetGGDatSize(s Sizer) (int, error) {
+	return s.GetDatSize()
 }
 
-func SearchParam(s Searcher, k string) []string {
+func SearchGG(s Searcher, k string) []string {
 	result := s.Search(k)
 	return result
+}
+
+func SetupGG(s Setuper) {
+	s.Setup()
 }

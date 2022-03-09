@@ -20,15 +20,19 @@ func main() {
 	} else if *home == "" {
 		fmt.Println("ERROR: can not find gg home. use --home or set $OGG_HOME")
 	} else if *s != "" {
-		i := cthun.ClassicInst{Home: *home}
-		i.Setup()
-		result := cthun.SearchParam(i, *s)
+		i := cthun.ClassicGG{Home: *home}
+		cthun.SetupGG(&i)
+		result := cthun.SearchGG(i, *s)
 		for _, r := range result {
 			fmt.Println(r)
 		}
 	} else if *size {
-		i := cthun.ClassicInst{Home: *home}
-		s, _ := i.GetSize()
+		i := cthun.ClassicGG{Home: *home}
+		cthun.SetupGG(&i)
+		s, err := cthun.GetGGDatSize(i)
+		if err != nil {
+			fmt.Println(err)
+		}
 		fmt.Println(s)
 	}
 }

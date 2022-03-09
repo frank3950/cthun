@@ -49,3 +49,7 @@ func SearchGG(s Searcher, k string) []string {
 func SetupGG(s Setuper) {
 	s.Setup()
 }
+
+func GetGGLag(l Lager) (map[string]int, map[string]int) {
+	return l.GetAllLag()
+}

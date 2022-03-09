@@ -65,6 +65,90 @@ func (i *ClassicGG) addRep(rChan <-chan rep) {
 	}
 }
 
+func (i ClassicGG) getInfo() (string, error) {
+	out, err := ExecCMD(i.Home + "/ggsci<<EOF\ninfo all\nEOF\n")
+	if err != nil {
+		LogError.Println(err)
+		return "", err
+	}
+	return out, nil
+}
+
+func (gg ClassicGG) GetAllLag() (map[string]int, map[string]int) {
+	m1 := make(map[string]int)
+	m2 := make(map[string]int)
+	for _, e := range gg.exts {
+		m1[e.name] = e.lag
+		m2[e.name] = e.ckpLag
+	}
+	for _, p := range gg.pumps {
+		m1[p.name] = p.lag
+		m2[p.name] = p.ckpLag
+	}
+	for _, r := range gg.reps {
+		m1[r.name] = r.lag
+		m2[r.name] = r.ckpLag
+	}
+	return m1, m2
+}
+
+func getLagMap(info string) (map[string]int, map[string]int) {
+	r := regexp.MustCompile(`\S*\s*\d{2}:\d{2}:\d{2}\s*\d{2}:\d{2}:\d{2}`)
+	allStr := r.FindAllString(info, -1)
+
+	m1 := make(map[string]int)
+	m2 := make(map[string]int)
+	for _, s := range allStr {
+		fStr := strings.Fields(s)
+		name := fStr[0]
+		lagStr := fStr[1]
+		t := strings.Split(lagStr, ":")
+		h, _ := strconv.Atoi(t[0])
+		m, _ := strconv.Atoi(t[1])
+		s, _ := strconv.Atoi(t[2])
+		lag := h*60*60 + m*60 + s
+
+		ckpLagStr := fStr[2]
+		t = strings.Split(ckpLagStr, ":")
+		h, _ = strconv.Atoi(t[0])
+		m, _ = strconv.Atoi(t[1])
+		s, _ = strconv.Atoi(t[2])
+		ckpLag := h*60*60 + m*60 + s
+
+		m1[name] = lag
+		m2[name] = ckpLag
+	}
+
+	return m1, m2
+}
+
+func (gg *ClassicGG) setupLag(m1 map[string]int, m2 map[string]int) {
+	var wg sync.WaitGroup
+	wg.Add(3)
+	go func() {
+		defer wg.Done()
+		for i, e := range gg.exts {
+			gg.exts[i].lag = m1[e.name]
+			gg.exts[i].ckpLag = m2[e.name]
+		}
+	}()
+	go func() {
+		defer wg.Done()
+		for i, p := range gg.pumps {
+			gg.pumps[i].lag = m1[p.name]
+			gg.pumps[i].ckpLag = m2[p.name]
+		}
+	}()
+	go func() {
+		defer wg.Done()
+		for i, r := range gg.reps {
+			gg.reps[i].lag = m1[r.name]
+			gg.reps[i].ckpLag = m2[r.name]
+		}
+	}()
+	wg.Wait()
+}
+
 func (i ClassicGG) GetDatSize() (int, error) {
 	bSizeStr, err := ExecCMD("du " + i.Home + "/dirdat|awk '{print $1}'")
 	bSizeStrFormat := strings.ReplaceAll(bSizeStr, "\n", "")

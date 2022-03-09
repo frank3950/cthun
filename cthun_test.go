@@ -1,6 +1,7 @@
 package cthun
 
 import (
+	"reflect"
 	"testing"
 )
 
@@ -48,5 +49,18 @@ func TestSearchGG(t *testing.T) {
 	s := SearchGG(i, "TTT")
 	if len(s) != 3 {
 		t.Errorf("search %v, expected %v", len(s), 3)
+	}
+}
+
+func TestGetGGLag(t *testing.T) {
+	gg := ClassicGG{}
+	m1, m2 := getLagMap(testInfo)
+	gg.setupLag(m1, m2)
+	e1, e2 := GetGGLag(gg)
+	if reflect.DeepEqual(m1, e1) {
+		t.Errorf("lagMap=%v, expected=%v", e1, m1)
+	}
+	if reflect.DeepEqual(m2, e2) {
+		t.Errorf("ckpLagMap=%v, expected=%v", e2, m2)
 	}
 }

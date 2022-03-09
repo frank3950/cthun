@@ -2,9 +2,108 @@ package cthun
 
 import (
 	"bufio"
+	"reflect"
 	"strings"
 	"testing"
 )
+
+func TestGetAllLag(t *testing.T) {
+	gg := ClassicGG{}
+	m1, m2 := getLagMap(testInfo)
+	gg.setupLag(m1, m2)
+	e1, e2 := gg.GetAllLag()
+	if reflect.DeepEqual(m1, e1) {
+		t.Errorf("lagMap=%v, expected=%v", e1, m1)
+	}
+	if reflect.DeepEqual(m2, e2) {
+		t.Errorf("ckpLagMap=%v, expected=%v", e2, m2)
+	}
+}
+
+func TestSetupLag(t *testing.T) {
+	gg := ClassicGG{}
+	gg.exts = append(gg.exts, ext{name: "P_A"})
+	gg.pumps = append(gg.pumps, pump{name: "P_B"})
+	gg.reps = append(gg.reps, rep{name: "R_A"})
+	gg.reps = append(gg.reps, rep{name: "P_BB"})
+	m1, m2 := getLagMap(testInfo)
+	gg.setupLag(m1, m2)
+	for _, e := range gg.exts {
+		if e.lag != m1[e.name] {
+			t.Errorf("name=%s lag=%d, expected=%d", e.name, e.lag, m1[e.name])
+		}
+		if e.ckpLag != m2[e.name] {
+			t.Errorf("name=%s ckpLag=%d, expected=%d", e.name, e.lag, m2[e.name])
+		}
+	}
+	for _, p := range gg.pumps {
+		if p.lag != m1[p.name] {
+			t.Errorf("name=%s lag=%d, expected=%d", p.name, p.lag, m1[p.name])
+		}
+		if p.ckpLag != m2[p.name] {
+			t.Errorf("name=%s ckpLag=%d, expected=%d", p.name, p.lag, m2[p.name])
+		}
+	}
+	for _, r := range gg.reps {
+		if r.lag != m1[r.name] {
+			t.Errorf("name=%s lag=%d, expected=%d", r.name, r.lag, m1[r.name])
+		}
+		if r.ckpLag != m2[r.name] {
+			t.Errorf("name=%s ckpLag=%d, expected=%d", r.name, r.lag, m2[r.name])
+		}
+	}
+}
+
+func TestGetLagMap(t *testing.T) {
+	var testCase = []struct {
+		name   string
+		lag    int
+		ckpLag int
+	}{
+		{"P_A", 0, 6},
+		{"P_B", 600, 66},
+		{"R_A", 36002, 1},
+		{"R_BB", 4, 10921},
+	}
+	m1, m2 := getLagMap(testInfo)
+	for _, tc := range testCase {
+		if tc.lag != m1[tc.name] {
+			t.Errorf("name=%s lag=%d, expected=%d", tc.name, m1[tc.name], tc.lag)
+		}
+		if tc.ckpLag != m2[tc.name] {
+			t.Errorf("name=%s ckpLag=%d, expected=%d", tc.name, m2[tc.name], tc.lag)
+		}
+	}
+}
+
+func TestGetInfo(t *testing.T) {
+	var rightTestCase = []struct {
+		in ClassicGG
+	}{
+		{in: ClassicGG{Home: "test//"}},
+		{in: ClassicGG{Home: "test/"}},
+		{in: ClassicGG{Home: "test"}},
+	}
+	for _, tc := range rightTestCase {
+		_, err := tc.in.getInfoDetail()
+		if err != nil {
+			t.Errorf("GetInfoDetailString(%v) err=%v", tc.in, err)
+		}
+	}
+
+	var wrongTestCase = []struct {
+		in ClassicGG
+	}{
+		{in: ClassicGG{Home: "/tmp/"}},
+		{in: ClassicGG{Home: "test/gg_home1/"}},
+	}
+	for _, tc := range wrongTestCase {
+		_, err := tc.in.getInfoDetail()
+		if err == nil {
+			t.Errorf("GetInfoDetailString(%v) should return err", tc.in)
+		}
+	}
+}
 
 func TestSearch(t *testing.T) {
 	i := ClassicGG{}
@@ -133,7 +232,7 @@ func TestParseInfoDetailString(t *testing.T) {
 	}
 }
 
-func TestTakeInfoDetailString(t *testing.T) {
+func TestGetInfoDetailString(t *testing.T) {
 	var rightTestCase = []struct {
 		in ClassicGG
 	}{
@@ -144,7 +243,7 @@ func TestTakeInfoDetailString(t *testing.T) {
 	for _, tc := range rightTestCase {
 		_, err := tc.in.getInfoDetail()
 		if err != nil {
-			t.Errorf("TakeInfoDetailString(%v) err=%v", tc.in, err)
+			t.Errorf("GetInfoDetailString(%v) err=%v", tc.in, err)
 		}
 	}
 
@@ -157,7 +256,7 @@ func TestTakeInfoDetailString(t *testing.T) {
 	for _, tc := range wrongTestCase {
 		_, err := tc.in.getInfoDetail()
 		if err == nil {
-			t.Errorf("TakeInfoDetailString(%v) should return err", tc.in)
+			t.Errorf("GetInfoDetailString(%v) should return err", tc.in)
 		}
 	}
 }
@@ -184,6 +283,16 @@ func TestSetup(t *testing.T) {
 		}
 	}
 }
+
+var testInfo = `
+Program     Status      Group       Lag at Chkpt  Time Since Chkpt
+
+MANAGER     RUNNING
+EXTRACT     RUNNING     P_A      00:00:00      00:00:06    
+EXTRACT     RUNNING     P_B      00:10:00      00:01:06    
+REPLICAT    RUNNING     R_A    10:00:02      00:00:01    
+REPLICAT    RUNNING     R_BB    00:00:04      03:02:01
+`
 
 var testInfoDetailStr1 = `EXTRACT    E_CXH     Last Started 2021-12-06 11:42   Status RUNNING
 Checkpoint Lag       00:00:01 (updated 00:00:01 ago)

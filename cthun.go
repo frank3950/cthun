@@ -30,8 +30,7 @@ type Searcher interface {
 }
 
 type Lager interface {
-	GetAllLag() map[string]int
-	GetAllCkpLag() map[string]int
+	GetAllLag() (map[string]int, map[string]int)
 }
 
 type Sizer interface {

@@ -6,9 +6,24 @@ import (
 	"testing"
 )
 
-func TestGetSize(t *testing.T) {
-	i := ClassicInst{Home: "test"}
-	bSize, err := i.GetSize()
+func TestSearch(t *testing.T) {
+	i := ClassicGG{}
+	i.exts = append(i.exts, ext{name: "E_TTT", tables: []string{"t1"}})
+	i.pumps = append(i.pumps, pump{name: "P_TTT", tables: []string{"t1"}})
+	i.reps = append(i.reps, rep{name: "R_TTT", maps: map[string]string{
+		"a": "aa",
+	}})
+	s := i.Search("TTT")
+	LogInfo.Println(i)
+	LogInfo.Println(s)
+	if len(s) != 3 {
+		t.Errorf("search %v, expected %v", len(s), 3)
+	}
+}
+
+func TestGetDatSize(t *testing.T) {
+	i := ClassicGG{Home: "test"}
+	bSize, err := i.GetDatSize()
 	if err != nil {
 		t.Errorf("TestGetDirSize err:%s", err)
 	}
@@ -18,7 +33,7 @@ func TestGetSize(t *testing.T) {
 }
 
 func TestAddExt(t *testing.T) {
-	i := ClassicInst{}
+	i := ClassicGG{}
 	eChan := make(chan ext)
 	go func() {
 		eChan <- ext{name: "E_CXA"}
@@ -34,7 +49,7 @@ func TestAddExt(t *testing.T) {
 }
 
 func TestAddPump(t *testing.T) {
-	i := ClassicInst{}
+	i := ClassicGG{}
 	pChan := make(chan pump)
 	go func() {
 		pChan <- pump{name: "P_CXA"}
@@ -49,7 +64,7 @@ func TestAddPump(t *testing.T) {
 }
 
 func TestAddRep(t *testing.T) {
-	i := ClassicInst{}
+	i := ClassicGG{}
 	rChan := make(chan rep)
 	go func() {
 		rChan <- rep{name: "R_CXA"}
@@ -66,7 +81,7 @@ func TestAddRep(t *testing.T) {
 }
 
 func TestParseParamFile(t *testing.T) {
-	i := ClassicInst{Home: "test/"}
+	i := ClassicGG{Home: "test/"}
 	echan := make(chan ext)
 	pchan := make(chan pump)
 	rchan := make(chan rep)
@@ -120,27 +135,27 @@ func TestParseInfoDetailString(t *testing.T) {
 
 func TestTakeInfoDetailString(t *testing.T) {
 	var rightTestCase = []struct {
-		in ClassicInst
+		in ClassicGG
 	}{
-		{in: ClassicInst{Home: "test//"}},
-		{in: ClassicInst{Home: "test/"}},
-		{in: ClassicInst{Home: "test"}},
+		{in: ClassicGG{Home: "test//"}},
+		{in: ClassicGG{Home: "test/"}},
+		{in: ClassicGG{Home: "test"}},
 	}
 	for _, tc := range rightTestCase {
-		_, err := tc.in.TakeInfoDetailString()
+		_, err := tc.in.getInfoDetail()
 		if err != nil {
 			t.Errorf("TakeInfoDetailString(%v) err=%v", tc.in, err)
 		}
 	}
 
 	var wrongTestCase = []struct {
-		in ClassicInst
+		in ClassicGG
 	}{
-		{in: ClassicInst{Home: "/tmp/"}},
-		{in: ClassicInst{Home: "test/gg_home1/"}},
+		{in: ClassicGG{Home: "/tmp/"}},
+		{in: ClassicGG{Home: "test/gg_home1/"}},
 	}
 	for _, tc := range wrongTestCase {
-		_, err := tc.in.TakeInfoDetailString()
+		_, err := tc.in.getInfoDetail()
 		if err == nil {
 			t.Errorf("TakeInfoDetailString(%v) should return err", tc.in)
 		}
@@ -148,7 +163,7 @@ func TestTakeInfoDetailString(t *testing.T) {
 }
 
 func TestCutInfoDetailString(t *testing.T) {
-	c := cutInfoDetailString(testInfoDetailStr1)
+	c := cutInfoDetail(testInfoDetailStr1)
 	for str := range c {
 		buf := bufio.NewScanner(strings.NewReader(str))
 		for buf.Scan() {
@@ -162,7 +177,7 @@ func TestCutInfoDetailString(t *testing.T) {
 func TestSetup(t *testing.T) {
 	var testCase = []string{"test/", "test//", "test"}
 	for _, tc := range testCase {
-		i := ClassicInst{Home: tc}
+		i := ClassicGG{Home: tc}
 		err := i.Setup()
 		if err != nil {
 			t.Errorf("setup error: %s", err)

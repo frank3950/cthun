@@ -37,6 +37,10 @@ type Sizer interface {
 	GetDatSize() (int, error)
 }
 
+type Operater interface {
+	GeAllOps() map[string]float64
+}
+
 func GetGGDatSize(s Sizer) (int, error) {
 	return s.GetDatSize()
 }
@@ -52,4 +56,8 @@ func SetupGG(s Setuper) {
 
 func GetGGLag(l Lager) (map[string]int, map[string]int) {
 	return l.GetAllLag()
+}
+
+func GetGGAllOps(o Operater) map[string]float64 {
+	return o.GeAllOps()
 }

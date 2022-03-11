@@ -5,6 +5,7 @@ import (
 	"io"
 	"os"
 	"regexp"
+	"runtime"
 	"strconv"
 	"strings"
 	"sync"
@@ -150,7 +151,15 @@ func (gg *ClassicGG) setupLag(m1 map[string]int, m2 map[string]int) {
 }
 
 func (i ClassicGG) GetDatSize() (int, error) {
-	bSizeStr, err := ExecCMD("du " + i.Home + "/dirdat|awk '{print $1}'")
+	os := runtime.GOOS
+	var cmd string
+	if os == "darwin" {
+		cmd = "du " + i.Home + "/dirdat|awk '{print $1}'"
+	}
+	if os == "linux" {
+		cmd = "du -b" + i.Home + "/dirdat|awk '{print $1}'"
+	}
+	bSizeStr, err := ExecCMD(cmd)
 	bSizeStrFormat := strings.ReplaceAll(bSizeStr, "\n", "")
 	if err != nil {
 		LogError.Printf("get dirdat size error:%s", err)

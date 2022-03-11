@@ -157,7 +157,7 @@ func (i ClassicGG) GetDatSize() (int, error) {
 		cmd = "du " + i.Home + "/dirdat|awk '{print $1}'"
 	}
 	if os == "linux" {
-		cmd = "du -b" + i.Home + "/dirdat|awk '{print $1}'"
+		cmd = "du -b " + i.Home + "/dirdat|awk '{print $1}'"
 	}
 	bSizeStr, err := ExecCMD(cmd)
 	bSizeStrFormat := strings.ReplaceAll(bSizeStr, "\n", "")

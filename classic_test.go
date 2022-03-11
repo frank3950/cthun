@@ -3,6 +3,7 @@ package cthun
 import (
 	"bufio"
 	"reflect"
+	"runtime"
 	"strings"
 	"testing"
 )
@@ -126,8 +127,16 @@ func TestGetDatSize(t *testing.T) {
 	if err != nil {
 		t.Errorf("TestGetDirSize err:%s", err)
 	}
-	if bSize != 8 {
-		t.Errorf("GetDirSize()=%v expected=%v", bSize, 8)
+	os := runtime.GOOS
+	if os == "darwin" {
+		if bSize != 8 {
+			t.Errorf("GetDirSize()=%v expected=%v", bSize, 8)
+		}
+	}
+	if os == "linux" {
+		if bSize != 4112 {
+			t.Errorf("GetDirSize()=%v expected=%v", bSize, 8)
+		}
 	}
 }
 

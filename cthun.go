@@ -30,6 +30,7 @@ type Searcher interface {
 }
 
 type Lager interface {
+	SetupLag() error
 	GetAllLag() (map[string]int, map[string]int)
 }
 
@@ -55,6 +56,10 @@ func SetupGG(s Setuper) {
 }
 
 func GetGGLag(l Lager) (map[string]int, map[string]int) {
+	err := l.SetupLag()
+	if err != nil {
+		LogError.Println(err)
+	}
 	return l.GetAllLag()
 }
 

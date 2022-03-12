@@ -56,7 +56,7 @@ func TestGetGGLag(t *testing.T) {
 	gg := ClassicGG{}
 	m1, m2 := getLagMap(testInfo)
 	gg.setupLag(m1, m2)
-	e1, e2 := GetGGLag(gg)
+	e1, e2 := GetGGLag(&gg)
 	if reflect.DeepEqual(m1, e1) {
 		t.Errorf("lagMap=%v, expected=%v", e1, m1)
 	}

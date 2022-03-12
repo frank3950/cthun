@@ -66,6 +66,16 @@ func (i *ClassicGG) addRep(rChan <-chan rep) {
 	}
 }
 
+func (g *ClassicGG) SetupLag() error {
+	s, err := g.getInfo()
+	if err != nil {
+		LogError.Println(err)
+		return err
+	}
+	g.setupLag(getLagMap(s))
+	return nil
+}
+
 func (i ClassicGG) getInfo() (string, error) {
 	out, err := ExecCMD(i.Home + "/ggsci<<EOF\ninfo all\nEOF\n")
 	if err != nil {
